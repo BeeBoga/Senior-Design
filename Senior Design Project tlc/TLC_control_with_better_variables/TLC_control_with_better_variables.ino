@@ -28,7 +28,7 @@ void setup() {
   int GS [48];//actual color assigned to each LED
 
   
-  int FC=0;//settings of repeat...
+  //int FC=0;//settings of repeat...
 
   
   int BC[3];//global brightness of each color
