@@ -24,12 +24,14 @@
   int BC_B = B1000000;//7-bits
   int BC_G = B1000000;//7-bits
   int BC_R = B1000000;//7-bits
-  int MC_B = B100;//3-bits
-  int MC_G = B100;//3-bits
-  int MC_R = B100;//3-bits
+  int MC_B = B010;//3-bits
+  int MC_G = B010;//3-bits
+  int MC_R = B010;//3-bits
   int DC_B[16];//7-bits
   int DC_G[16];//7-bits
   int DC_R[16];//7-bits
+
+  int del = 300;
 
   int GS_B [16];//actual color assigned to each LED
   int GS_G [16];
@@ -92,16 +94,13 @@ void setup() {
 
   digitalWrite(SIN, HIGH);
   digitalWrite(LAT, LOW);
-  //analogWrite(GSCLK, 127);
+  analogWrite(GSCLK, 127);
 
 
   control_latch();
+  control_latch();
 
-  set_blue(0);
-  set_magenta(2);
-  set_purple(3);
-  set_red(4);
-  color();
+  
 
 
 }
@@ -113,8 +112,27 @@ void loop() {
   
 
  
-  digitalWrite(GSCLK,HIGH);
-  digitalWrite(GSCLK,LOW);
+  //digitalWrite(GSCLK,HIGH);
+  //digitalWrite(GSCLK,LOW);
+
+  set_blue(0);
+  set_magenta(0);
+  set_red(0);
+  set_purple(0);
+  set_green(0);
+  set_yellow(0);
+  set_cyan(0);
+  set_orange(0);
+  set_pink(0);
+  set_lightgreen(0);
+  set_greencyan(0);
+  set_coolblue(0);
+
+
+
+  
+
+  
 
  
   
@@ -175,7 +193,7 @@ int control_latch()
     shift(7, DC_B[i]);
     shift(7, DC_G[i]);
     shift(7, DC_R[i]);
-    Serial.println(i);
+    //Serial.println(i);
   }
   
 
