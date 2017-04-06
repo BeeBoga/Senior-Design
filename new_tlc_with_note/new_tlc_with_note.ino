@@ -2,7 +2,7 @@
 #define SCLK 6
 #define SIN 5
 #define GSCLK 4
-#define THRESHOLD 400
+#define THRESHOLD 500
 #define APIN 0
 
 //769 bit register
@@ -41,18 +41,19 @@ int B=0;
 char ans;
 
 boolean flag = false;
+boolean dlay= false;
 
 
 /////////////////////////////////////////////////////
 
   int required = B10010110;//8-bits
-  int FC = B01111;//5-bitsw
+  int FC = B00111;//5-bitsw
   int BC_B = B1000000;//7-bits
   int BC_G = B1000000;//7-bits
   int BC_R = B1000000;//7-bits
-  int MC_B = B010;//3-bits
-  int MC_G = B010;//3-bits
-  int MC_R = B010;//3-bits
+  int MC_B = B100;//3-bits
+  int MC_G = B100;//3-bits
+  int MC_R = B100;//3-bits
   int DC_B[16];//7-bits
   int DC_G[16];//7-bits
   int DC_R[16];//7-bits
@@ -166,6 +167,9 @@ void loop() {
 
 flag = true;
 freq();
+
+if(dlay)
+  delay(250);
 
 
 
@@ -409,9 +413,18 @@ char note(float frequency)
       ans='C';
       //Serial.println(n+2);
       colors(3,0);
+      colors(3,1);
       colors(3,2);
       colors(3,3);
       colors(3,4);
+      colors(3,5);
+      colors(3,6);
+      colors(3,7);
+      colors(3,8);
+      colors(3,9);
+      colors(3,10);
+      colors(3,11);
+ 
       color();
     }
     else if(((67.36*val[n])<frequency)&&(frequency<=(71.36*val[n])))
@@ -419,9 +432,17 @@ char note(float frequency)
       //return('I');
       //Serial.println(n+2);
       colors(9,0);
+      colors(9,1);
       colors(9,2);
       colors(9,3);
       colors(9,4);
+      colors(9,5);
+      colors(9,6);
+      colors(9,7);
+      colors(9,8);
+      colors(9,9);
+      colors(9,10);
+      colors(9,11);
       color();
     }
     else if(((71.36*val[n])<frequency)&&(frequency<=(75.6*val[n])))
@@ -429,19 +450,34 @@ char note(float frequency)
       //return('D');
       //Serial.println(n+2);
       colors(4,0);
+      colors(4,1);
       colors(4,2);
       colors(4,3);
       colors(4,4);
-      color();
+      colors(4,5);
+      colors(4,6);
+      colors(4,7);
+      colors(4,8);
+      colors(4,9);
+      colors(4,10);
+      colors(4,11);
     }
     else if(((75.6*val[n])<frequency)&&(frequency<=(80.1*val[n])))
     {
       //return('J');
       //Serial.println(n+2);
       colors(10,0);
+      colors(10,1);
       colors(10,2);
       colors(10,3);
       colors(10,4);
+      colors(10,5);
+      colors(10,6);
+      colors(10,7);
+      colors(10,8);
+      colors(10,9);
+      colors(10,10);
+      colors(10,11);
       color();
     }
     else if(((80.1*val[n])<frequency)&&(frequency<=(84.86*val[n])))
@@ -449,9 +485,17 @@ char note(float frequency)
       //return('E');
       //Serial.println(n+2);
       colors(5,0);
+      colors(5,1);
       colors(5,2);
       colors(5,3);
       colors(5,4);
+      colors(5,5);
+      colors(5,6);
+      colors(5,7);
+      colors(5,8);
+      colors(5,9);
+      colors(5,10);
+      colors(5,11);
       color();
     }
     else if(((84.86*val[n])<frequency)&&(frequency<=(89.91*val[n])))
@@ -459,9 +503,17 @@ char note(float frequency)
       //return('F');
       //Serial.println(n+2);
       colors(6,0);
+      colors(6,1);
       colors(6,2);
       colors(6,3);
       colors(6,4);
+      colors(6,5);
+      colors(6,6);
+      colors(6,7);
+      colors(6,8);
+      colors(6,9);
+      colors(6,10);
+      colors(6,11);
       color();
     }
     else if(((89.91*val[n])<frequency)&&(frequency<=(95.25*val[n])))
@@ -469,9 +521,17 @@ char note(float frequency)
       //return('K');
       //Serial.println(n+2);
       colors(11,0);
+      colors(11,1);
       colors(11,2);
       colors(11,3);
       colors(11,4);
+      colors(11,5);
+      colors(11,6);
+      colors(11,7);
+      colors(11,8);
+      colors(11,9);
+      colors(11,10);
+      colors(11,11);
       color();
     }
     else if(((95.25*val[n])<frequency)&&(frequency<=(100.92*val[n])))
@@ -479,9 +539,17 @@ char note(float frequency)
       //return('G');
       //Serial.println(n+2);
       colors(7,0);
+      colors(7,1);
       colors(7,2);
       colors(7,3);
       colors(7,4);
+      colors(7,5);
+      colors(7,6);
+      colors(7,7);
+      colors(7,8);
+      colors(7,9);
+      colors(7,10);
+      colors(7,11);
       color();
     }
     else if(((100.92*val[n])<frequency)&&(frequency<=(106.92*val[n])))
@@ -489,9 +557,17 @@ char note(float frequency)
       //return('L');
       //Serial.println(n+2);
       colors(12,0);
+      colors(12,1);
       colors(12,2);
       colors(12,3);
       colors(12,4);
+      colors(12,5);
+      colors(12,6);
+      colors(12,7);
+      colors(12,8);
+      colors(12,9);
+      colors(12,10);
+      colors(12,11);
       color();
     }
     else if(((106.92*val[n])<frequency)&&(frequency<=(113.27*val[n])))
@@ -499,9 +575,17 @@ char note(float frequency)
       //return('A');
       //Serial.println(n+2);
       colors(1,0);
+      colors(1,1);
       colors(1,2);
       colors(1,3);
       colors(1,4);
+      colors(1,5);
+      colors(1,6);
+      colors(1,7);
+      colors(1,8);
+      colors(1,9);
+      colors(1,10);
+      colors(1,11);
       color();
     }
     else if(((113.27*val[n])<frequency)&&(frequency<=(120.01*val[n])))
@@ -509,9 +593,17 @@ char note(float frequency)
       //return('H');
       //Serial.println(n+2);
       colors(8,0);
+      colors(8,1);
       colors(8,2);
       colors(8,3);
       colors(8,4);
+      colors(8,5);
+      colors(8,6);
+      colors(8,7);
+      colors(8,8);
+      colors(8,9);
+      colors(8,10);
+      colors(8,11);
       color();
     }
     else if(((120.01*val[n])<frequency)&&(frequency<=(127.14*val[n])))
@@ -519,9 +611,17 @@ char note(float frequency)
       //return('B');
       //Serial.println(n+2);
       colors(2,0);
+      colors(2,1);
       colors(2,2);
       colors(2,3);
       colors(2,4);
+      colors(2,5);
+      colors(2,6);
+      colors(2,7);
+      colors(2,8);
+      colors(2,9);
+      colors(2,10);
+      colors(2,11);
       color();
     }
 
