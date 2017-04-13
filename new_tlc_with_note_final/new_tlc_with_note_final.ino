@@ -7,6 +7,8 @@
 #define cs 8
 #define data 9
 #define clck 10
+#define ANALOGISR 2
+#define OFFSET 100
 
 //769 bit register
 //768th bit is control bit 0 sets grayscale
@@ -48,7 +50,10 @@ int dta[20];
 char ans;
 
 boolean flag = false;
-boolean dlay= false;
+boolean dlay= true;
+boolean flag_analog=true;
+boolean resete = false;
+
 
 
 /////////////////////////////////////////////////////
@@ -102,8 +107,10 @@ boolean dlay= false;
 void setup() {
   // put your setup code here, to run once:
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("begin");
+
+  attachInterrupt(digitalPinToInterrupt(2), set_limit, FALLING);
 
   for(i=0; i<16; i++)
   {
@@ -119,7 +126,7 @@ void setup() {
     GS_R[i] = B00000000;
   }
 
-  
+  pinMode(ANALOGISR, INPUT);
   
   pinMode(LAT, OUTPUT);
   pinMode(SCLK, OUTPUT);
@@ -137,10 +144,10 @@ void setup() {
   pinMode(clck,OUTPUT);
 
   THRESHOLD = map(analogRead(0),0,1023,0,4095);
-  Serial.println(analogRead(0));
-  Serial.println(THRESHOLD);
-  for(i=0;i<1000;i++)
-  Serial.println(readingadc());
+  //Serial.println(analogRead(0));
+  //Serial.println(THRESHOLD);
+  //for(i=0;i<1000;i++)
+   //Serial.println(readingadc());
 
 
   control_latch();
@@ -151,12 +158,6 @@ void setup() {
   flag = true;
   freq();
 
-
-  //note(100);
-  //delay(500);
-  //note(120);
-  //delay(500);
-  //note (140);
 
 
 }
@@ -389,10 +390,7 @@ void set_off(int value)
 void colors(int note, int number)
 {
   if(note == 1)
-  {
     set_blue(number);
-    color();
-  }
   else if(note == 8)
     set_red(number);
   else if(note == 2)
@@ -421,261 +419,160 @@ void colors(int note, int number)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-char note(float frequency)
+void note(float frequency)
 {
   int n=0;
   int val[] = {1,2,4,8,16};
 
+  Serial.println(frequency);
+
   for(n=0;n<5;n++)
   {
   
-    if(((63.58*val[n])<frequency)&&(frequency<=(67.36*val[n])))
+    if(((64.5*val[n])<frequency)&&(frequency<=(66.38*val[n])))                  //C
     {
-      //return 'C';
-      ans='C';
-      //Serial.println(n+2);
-      colors(3,0);
-      colors(3,1);
-      colors(3,2);
-      colors(3,3);
-      colors(3,4);
-      colors(3,5);
-      colors(3,6);
-      colors(3,7);
-      colors(3,8);
-      colors(3,9);
-      colors(3,10);
-      colors(3,11);
- 
+      for(int a=0; a<12; a++)
+        colors(3,a);
       color();
+      break;
     }
-    else if(((67.36*val[n])<frequency)&&(frequency<=(71.36*val[n])))
+    else if(((68.32*val[n])<frequency)&&(frequency<=(70.33*val[n])))            //C#
     {
-      //return('I');
-      //Serial.println(n+2);
-      colors(9,0);
-      colors(9,1);
-      colors(9,2);
-      colors(9,3);
-      colors(9,4);
-      colors(9,5);
-      colors(9,6);
-      colors(9,7);
-      colors(9,8);
-      colors(9,9);
-      colors(9,10);
-      colors(9,11);
+      for(int a=0; a<12; a++)
+        colors(9,a);
       color();
+      break;
     }
-    else if(((71.36*val[n])<frequency)&&(frequency<=(75.6*val[n])))
+    else if(((72.39*val[n])<frequency)&&(frequency<=(74.51*val[n])))             //D
     {
-      //return('D');
-      //Serial.println(n+2);
-      colors(4,0);
-      colors(4,1);
-      colors(4,2);
-      colors(4,3);
-      colors(4,4);
-      colors(4,5);
-      colors(4,6);
-      colors(4,7);
-      colors(4,8);
-      colors(4,9);
-      colors(4,10);
-      colors(4,11);
-    }
-    else if(((75.6*val[n])<frequency)&&(frequency<=(80.1*val[n])))
-    {
-      //return('J');
-      //Serial.println(n+2);
-      colors(10,0);
-      colors(10,1);
-      colors(10,2);
-      colors(10,3);
-      colors(10,4);
-      colors(10,5);
-      colors(10,6);
-      colors(10,7);
-      colors(10,8);
-      colors(10,9);
-      colors(10,10);
-      colors(10,11);
+      for(int a=0; a<12; a++)
+        colors(4,a);
       color();
+      break;
     }
-    else if(((80.1*val[n])<frequency)&&(frequency<=(84.86*val[n])))
+    else if(((76.69*val[n])<frequency)&&(frequency<=(78.94*val[n])))              //D#
     {
-      //return('E');
-      //Serial.println(n+2);
-      colors(5,0);
-      colors(5,1);
-      colors(5,2);
-      colors(5,3);
-      colors(5,4);
-      colors(5,5);
-      colors(5,6);
-      colors(5,7);
-      colors(5,8);
-      colors(5,9);
-      colors(5,10);
-      colors(5,11);
+      for(int a=0; a<12; a++)
+        colors(10,a);
       color();
+      break;
     }
-    else if(((84.86*val[n])<frequency)&&(frequency<=(89.91*val[n])))
+    else if(((81.25*val[n])<frequency)&&(frequency<=(83.64*val[n])))             //E
     {
-      //return('F');
-      //Serial.println(n+2);
-      colors(6,0);
-      colors(6,1);
-      colors(6,2);
-      colors(6,3);
-      colors(6,4);
-      colors(6,5);
-      colors(6,6);
-      colors(6,7);
-      colors(6,8);
-      colors(6,9);
-      colors(6,10);
-      colors(6,11);
+      for(int a=0; a<12; a++)
+        colors(5,a);
       color();
+      break;
     }
-    else if(((89.91*val[n])<frequency)&&(frequency<=(95.25*val[n])))
+    else if(((86.01*val[n])<frequency)&&(frequency<=(88.6*val[n])))            //F
     {
-      //return('K');
-      //Serial.println(n+2);
-      colors(11,0);
-      colors(11,1);
-      colors(11,2);
-      colors(11,3);
-      colors(11,4);
-      colors(11,5);
-      colors(11,6);
-      colors(11,7);
-      colors(11,8);
-      colors(11,9);
-      colors(11,10);
-      colors(11,11);
+      for(int a=0; a<12; a++)
+        colors(6,a);
       color();
+      break;
     }
-    else if(((95.25*val[n])<frequency)&&(frequency<=(100.92*val[n])))
+    else if(((91.2*val[n])<frequency)&&(frequency<=(93.875*val[n])))           //F#
     {
-      //return('G');
-      //Serial.println(n+2);
-      colors(7,0);
-      colors(7,1);
-      colors(7,2);
-      colors(7,3);
-      colors(7,4);
-      colors(7,5);
-      colors(7,6);
-      colors(7,7);
-      colors(7,8);
-      colors(7,9);
-      colors(7,10);
-      colors(7,11);
+      for(int a=0; a<12; a++)
+        colors(11,a);
       color();
+      break;
     }
-    else if(((100.92*val[n])<frequency)&&(frequency<=(106.92*val[n])))
+    else if(((96.63*val[n])<frequency)&&(frequency<=(99.46*val[n])))          //G
     {
-      //return('L');
-      //Serial.println(n+2);
-      colors(12,0);
-      colors(12,1);
-      colors(12,2);
-      colors(12,3);
-      colors(12,4);
-      colors(12,5);
-      colors(12,6);
-      colors(12,7);
-      colors(12,8);
-      colors(12,9);
-      colors(12,10);
-      colors(12,11);
+      for(int a=0; a<12; a++)
+        colors(7,a);
       color();
+      break;
     }
-    else if(((106.92*val[n])<frequency)&&(frequency<=(113.27*val[n])))
+    else if(((102.37*val[n])<frequency)&&(frequency<=(105.37*val[n])))          //G#
     {
-      //return('A');
-      //Serial.println(n+2);
-      colors(1,0);
-      colors(1,1);
-      colors(1,2);
-      colors(1,3);
-      colors(1,4);
-      colors(1,5);
-      colors(1,6);
-      colors(1,7);
-      colors(1,8);
-      colors(1,9);
-      colors(1,10);
-      colors(1,11);
+      for(int a=0; a<12; a++)
+        colors(12,a);
       color();
+      break;
     }
-    else if(((113.27*val[n])<frequency)&&(frequency<=(120.01*val[n])))
+    else if(((108.46*val[n])<frequency)&&(frequency<=(111.64*val[n])))          //A
     {
-      //return('H');
-      //Serial.println(n+2);
-      colors(8,0);
-      colors(8,1);
-      colors(8,2);
-      colors(8,3);
-      colors(8,4);
-      colors(8,5);
-      colors(8,6);
-      colors(8,7);
-      colors(8,8);
-      colors(8,9);
-      colors(8,10);
-      colors(8,11);
+      for(int a=0; a<12; a++)
+        colors(1,a);
       color();
+      break;
     }
-    else if(((120.01*val[n])<frequency)&&(frequency<=(127.14*val[n])))
+    else if(((114.91*val[n])<frequency)&&(frequency<=(118.27*val[n])))          //A#
     {
-      //return('B');
-      //Serial.println(n+2);
-      colors(2,0);
-      colors(2,1);
-      colors(2,2);
-      colors(2,3);
-      colors(2,4);
-      colors(2,5);
-      colors(2,6);
-      colors(2,7);
-      colors(2,8);
-      colors(2,9);
-      colors(2,10);
-      colors(2,11);
+      for(int a=0; a<12; a++)
+        colors(8,a);
       color();
+      break;
+    }
+    else if(((121.74*val[n])<frequency)&&(frequency<=(125.31*val[n])))          //B
+    {
+      for(int a=0; a<12; a++)
+        colors(2,a);
+      color();
+      break;
     }
 
   }
+  //for(int a=0; a<12; a++)
+    //set_off(a);
+  //color();
     
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void freq()
-
 {
+  //Serial.println("here");
   while(flag)
   {
+    //Serial.println("here");
 
-
-      //A = analogRead(APIN);//coded out for new data aquisition
-      //B = analogRead(APIN);
       A=readingadc();
       B=readingadc();
-    
-      //Serial.println(A);
-      //Serial.println(B);
-    
-      if((A<B)&&(A<THRESHOLD)&&(B>=THRESHOLD))//it will sometimes miss the threshold causing it to loop for longer than wanted, a time out feature may save this
+
+      
+
+      if((A<B)&&(resete==true)&&(A>=THRESHOLD))
       {
-        //Serial.println("test1");
+        //Serial.println("here");
         if(count==0)
         {
           timea=micros();
           count++;
-          //Serial.println("test1");
+          resete = false;
+        }
+        else if(count==1)
+        {
+          timeb=micros();
+          period=timeb-timea;
+          resete = false;
+          periodf = period/mil;
+          periodf = 1/periodf; 
+          note(periodf);
+          repeat=0;
+          flag=false;
+          count = 0;
+        }
+      }
+        else if((A>B)&&(A<=THRESHOLD))
+        {
+          //Serial.println("here");
+          resete=true;
+        }
+
+      
+/*
+      if(((A<B)&&(A>(THRESHOLD-OFFSET))&&(B<(THRESHOLD+OFFSET)))||(count==0))
+      //if((A<THRESHOLD)&&(A>(THRESHOLD-OFFSET))&&(B>=THRESHOLD)&&(B<(THRESHOLD+OFFSET))&&(A<B))
+      //if((A<B)&&(A<THRESHOLD)&&(B>=THRESHOLD))//it will sometimes miss the threshold causing it to loop for longer than wanted, a time out feature may save this
+      {
+        if(count==0)
+        {
+          timea=micros();
+          count++;
         }
         else if(count==1)
         {
@@ -694,16 +591,14 @@ void freq()
           else if(repeat==2)
           {
             value[2]=period;
-            if((value[0]==value[1])&&value[1]==value[2])
+            //if((value[0]==value[1])&&value[1]==value[2])
+            //if(((((value[0]-value[1])<1000)&&((value[0]-value[1])>0))||(((value[1]-value[0])<1000)&&((value[1]-value[0])>0)))&&((((value[1]-value[2])<1000)&&((value[1]-value[2])>0))||(((value[2]-value[1])<1000)&&((value[2]-value[1])>0))))
+            if((((value[0]-value[1])<1000)&&((value[0]-value[1])>0))||(((value[1]-value[0])<1000)&&((value[1]-value[0])>0)))
             {
               //then we are going to say that this is most likely the correct value
               periodf = period/mil;
-              periodf = 1/periodf;
-              //Serial.println(periodf);
-              
+              periodf = 1/periodf; 
               note(periodf);
-              //colors(ans,0);
-              //return value if we ran this inside of a function.
               repeat=0;
               flag=false;
               
@@ -718,7 +613,8 @@ void freq()
           count=0;
         }
       }
-
+      
+*/
   }
 
 }
@@ -726,7 +622,75 @@ void freq()
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+void freq()
 
+{
+  while(flag)
+  {
+
+      A=readingadc();
+      B=readingadc();
+    
+      if((A<B)&&(A<THRESHOLD)&&(B>=THRESHOLD))//it will sometimes miss the threshold causing it to loop for longer than wanted, a time out feature may save this
+      {
+        if(count==0)
+        {
+          timea=micros();
+          count++;
+        }
+        else if(count==1)
+        {
+          timeb=micros();
+          period=timeb-timea;
+          if(repeat==0)
+          {
+            value[0]=period;
+            repeat++;
+          }
+          /*if(repeat==1)
+          {
+            value[1]=period;
+            repeat++;
+          }
+          */
+          /*
+          if(repeat==1)
+          {
+            //value[2]=period;
+            //if((value[0]==value[1])&&value[1]==value[2])
+            //if(((((value[0]-value[1])<1000)&&((value[0]-value[1])>0))||(((value[1]-value[0])<1000)&&((value[1]-value[0])>0)))&&((((value[1]-value[2])<1000)&&((value[1]-value[2])>0))||(((value[2]-value[1])<1000)&&((value[2]-value[1])>0))))
+            //if((((value[0]-value[1])<1000)&&((value[0]-value[1])>0))||(((value[1]-value[0])<1000)&&((value[1]-value[0])>0)))
+            //{
+              //then we are going to say that this is most likely the correct value
+              periodf = period/mil;
+              periodf = 1/periodf; 
+              note(periodf);
+              repeat=0;
+              flag=false;
+              
+            //}
+           // else
+            //{
+              //value[0]=value[1];
+              //value[1]=value[2];
+              //repeat stays at 1 thus looping through this again;
+            //}
+          }
+          count=0;
+        }
+      }
+
+  }
+
+}
+
+
+*/
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 int readingadc()
 {
   int number = 0;
@@ -744,8 +708,109 @@ int readingadc()
   {
     number = number + (dta[i] <<(14-i));
   }
-  delayMicroseconds(10);
+  //delayMicroseconds(1);
   return(number);
   
   
 }
+
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+int readingadc()
+{
+  int number = 0;
+
+  //a = micros();
+  
+  //digitalWrite(cs, HIGH);
+  PORTH = PORTH | B00100000;
+  //digitalWrite(cs, LOW);
+  PORTH = PORTH & B11011111;
+
+  for(int i = 0; i<15; i++)
+  {
+    //digitalWrite(clck, HIGH);
+    PORTB = PORTB | B00010000;
+    //digitalWrite(clck, LOW);
+    PORTB = PORTB & B11101111;
+    //dta[i] = digitalRead(data);
+    dta[i] = ((PINH & B01000000)>>6);
+  }
+  for(int i=3; i<15;i++)
+  {
+    number = number + (dta[i] <<(14-i));
+  }
+  
+  //delayMicroseconds(1);
+  //b=micros();
+  //a=b-a;
+  //Serial.println(a);
+  //Serial.println("done");
+  //Serial.println(number);
+  return(number);
+  
+  
+}
+
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int readingadc()
+{
+  int number = 0;
+
+  //a = micros();
+  
+  //digitalWrite(cs, HIGH);
+  PORTH = PORTH | B00100000;
+  //digitalWrite(cs, LOW);
+  PORTH = PORTH & B11011111;
+
+  for(int i = 0; i<15; i++)
+  {
+    //digitalWrite(clck, HIGH);
+    PORTB = PORTB | B00010000;
+    //digitalWrite(clck, LOW);
+    PORTB = PORTB & B11101111;
+    //dta[i] = digitalRead(data);
+    if(i>2)
+    {
+    number = number<<1;
+    number = number + ((PINH & B01000000)>>6);
+    }
+  }
+  /*
+  for(int i=3; i<15;i++)
+  {
+    number = number + (dta[i] <<(14-i));
+  }
+  */
+  
+  //delayMicroseconds(1);
+  //b=micros();
+  //a=b-a;
+  //Serial.println(a);
+  //Serial.println("done");
+  //Serial.println(number);
+  return(number);
+  
+  
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void set_limit()
+{
+  THRESHOLD = map(analogRead(0),0,1023,0,4095);
+  flag_analog = true;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
