@@ -1,0 +1,72 @@
+Partlist exported from C:/Users/Brian/Documents/eagle/LED board/final board.sch at 4/10/2017 8:40 AM
+
+Part       Value                   Device                  Package                 Description                MF MPN     OC_FARNELL OC_NEWARK
+3.3V       HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+9V+                                W237-102                W237-102                WAGO SCREW CLAMP              237-102 unknown    70K9898  
+9V-                                W237-102                W237-102                WAGO SCREW CLAMP              237-102 unknown    70K9898  
+C3V                                C-USC0805               C0805                   CAPACITOR, American symbol                                
+C5V                                C-USC0805               C0805                   CAPACITOR, American symbol                                
+CADC1      .1u                     C-USC0805               C0805                   CAPACITOR, American symbol                                
+CADC2      1u                      C-USC0805               C0805                   CAPACITOR, American symbol                                
+CCLK1      .1u                     C-USC0805               C0805                   CAPACITOR, American symbol                                
+CCLK2      .1u                     C-USC0805               C0805                   CAPACITOR, American symbol                                
+CIN1       100u                    C-USC0805               C0805                   CAPACITOR, American symbol                                
+CS         HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+CVIN       10u                     C-USC0805               C0805                   CAPACITOR, American symbol                                
+DATA       HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+GSCLK      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+IC1        UA741P                  UA741P                  DIL08                   OP AMP                                                    
+INPUTGND   HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+INPUTV     HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+INT1       HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+INT2       HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+INT3       HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+LAT        HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+MOMA1      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+MOMA2      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+MOMA3      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+MOMB1      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+MOMB2      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+MOMB3      HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTAMPGND  HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTAMPVAL  HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTAMPVCC  HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTBIAS5V  HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTBIASGND HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTBIASVAL HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTLVL5V   HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTLVLGND  HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTLVLVAL  HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POTLVLVAL2 HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+POWER                              W237-102                W237-102                WAGO SCREW CLAMP              237-102 unknown    70K9898  
+R-         1k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RBIAS      1k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RCLOCK1    1k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RCLOCK2    100k                    R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RCS        5k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RGAIN      100k                    R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RIN        20k                     R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RMOM1      5k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RMOM2      5k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RMOM3      5k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RSCLK      5k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RSDATA     5k                      R-US_M0805              M0805                   RESISTOR, American symbol                                 
+RVIN       330                     R-US_M0805              M0805                   RESISTOR, American symbol                                 
+SCLK       HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+SIN        HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+SLK        HEADERPIN_1             HEADERPIN_1             HEADERPIN_1                                                                       
+TLC5955    TLC5954                 TLC5954                 TLC5955                                                                           
+U$1        MIC1555                 MIC1555                 SOT-23                                                                            
+U$2        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$3        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$4        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$5        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$6        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$7        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$8        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$9        KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$10       KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$11       KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$12       KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$13       KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8 KINGSBRIGHT_LED_3.5X2.8                                                           
+U$14       ADC121S101              ADC121S101              SOT-23(6)                                                                         

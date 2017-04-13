@@ -1,0 +1,18 @@
+"Qty";"Value";"Device";"Package";"Parts";"Description";"MF";"MPN";"OC_FARNELL";"OC_NEWARK";
+"2";"";"C-USC0805";"C0805";"C3V, C5V";"CAPACITOR, American symbol";"";"";"";"";
+"3";"";"W237-102";"W237-102";"9V+, 9V-, POWER";"WAGO SCREW CLAMP";"";"237-102";"unknown";"70K9898";
+"3";".1u";"C-USC0805";"C0805";"CADC1, CCLK1, CCLK2";"CAPACITOR, American symbol";"";"";"";"";
+"2";"100k";"R-US_M0805";"M0805";"RCLOCK2, RGAIN";"RESISTOR, American symbol";"";"";"";"";
+"1";"100u";"C-USC0805";"C0805";"CIN1";"CAPACITOR, American symbol";"";"";"";"";
+"1";"10u";"C-USC0805";"C0805";"CVIN";"CAPACITOR, American symbol";"";"";"";"";
+"3";"1k";"R-US_M0805";"M0805";"R-, RBIAS, RCLOCK1";"RESISTOR, American symbol";"";"";"";"";
+"1";"1u";"C-USC0805";"C0805";"CADC2";"CAPACITOR, American symbol";"";"";"";"";
+"1";"20k";"R-US_M0805";"M0805";"RIN";"RESISTOR, American symbol";"";"";"";"";
+"1";"330";"R-US_M0805";"M0805";"RVIN";"RESISTOR, American symbol";"";"";"";"";
+"6";"5k";"R-US_M0805";"M0805";"RCS, RMOM1, RMOM2, RMOM3, RSCLK, RSDATA";"RESISTOR, American symbol";"";"";"";"";
+"1";"ADC121S101";"ADC121S101";"SOT-23(6)";"U$14";"";"";"";"";"";
+"29";"HEADERPIN_1";"HEADERPIN_1";"HEADERPIN_1";"3.3V, CS, DATA, GSCLK, INPUTGND, INPUTV, INT1, INT2, INT3, LAT, MOMA1, MOMA2, MOMA3, MOMB1, MOMB2, MOMB3, POTAMPGND, POTAMPVAL, POTAMPVCC, POTBIAS5V, POTBIASGND, POTBIASVAL, POTLVL5V, POTLVLGND, POTLVLVAL, POTLVLVAL2, SCLK, SIN, SLK";"";"";"";"";"";
+"12";"KINGSBRIGHT_LED_3.5X2.8";"KINGSBRIGHT_LED_3.5X2.8";"KINGSBRIGHT_LED_3.5X2.8";"U$2, U$3, U$4, U$5, U$6, U$7, U$8, U$9, U$10, U$11, U$12, U$13";"";"";"";"";"";
+"1";"MIC1555";"MIC1555";"SOT-23";"U$1";"";"";"";"";"";
+"1";"TLC5954";"TLC5954";"TLC5955";"TLC5955";"";"";"";"";"";
+"1";"UA741P";"UA741P";"DIL08";"IC1";"OP AMP";"";"";"";"";
